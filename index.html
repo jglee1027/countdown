@@ -1,0 +1,64 @@
+<html lang="UTF-8">
+  <head>
+    <meta charset="UTF-8"/>
+  </head>
+  <body>
+    <center>
+      <script src="https://cdn.logwork.com/widget/countdown.js"></script>
+      <div id="countdown">
+        <!-- <a href="https://logwork.com/countdown-wxp8" -->
+        <!--    class="countdown-timer" -->
+        <!--    data-timezone="Asia/Seoul" -->
+        <!--    data-date="18:40"> -->
+          <!--   잠시만 기다려주세요. -->
+          <!-- </a> -->
+      </div>
+      <h1 id="message" style="color:blue">
+        <!-- 12:30 에 시작합니다. -->
+      </h1>
+
+      <script type="text/javascript">
+        var Request = function() {
+            this.getParameter = function(name) {
+                var rtnval = '';
+                var nowAddress = decodeURIComponent(location.href);
+                var parameters = (nowAddress.slice(nowAddress.indexOf('?') + 1,
+                                                   nowAddress.length)).split('&');
+                for (var i = 0; i < parameters.length; i++) {
+                    var varName = parameters[i].split('=')[0];
+                    if (varName.toUpperCase() == name.toUpperCase()) {
+                        rtnval = parameters[i].split('=')[1];
+                        break;
+                    }
+                }
+                return rtnval;
+            }
+        }
+        var request = new Request();
+        const time = request.getParameter("t");
+        const m = request.getParameter("m");
+        const msg = m == "" ? '잠시만 기다려주세요.' : unescape(m);
+        const text = document.createTextNode(time +'에 시작합니다.');
+        const messageElement = document.getElementById("message");
+        messageElement.appendChild(text);
+
+        const countdownDiv = document.getElementById("countdown");
+        const waitMessage = document.createTextNode(msg);
+        const a = document.createElement("a");
+        a.setAttribute("href", "https://logwork.com/countdown-wxp8");
+        a.setAttribute("class", "countdown-timer");
+        a.setAttribute("data-timezone", "Asia/Seoul");
+        a.setAttribute("data-date", unescape(time).replaceAll('"', ''));
+        a.appendChild(waitMessage);
+        countdownDiv.appendChild(a);
+      </script>
+
+      <script src="https://cdn.logwork.com/widget/clock.js"></script>
+      <a href="https://logwork.com/current-time-in-seongnam-korea-south-ulsan"
+         class="clock-time"
+         data-style="default-numeral"
+         data-size="300"
+         data-timezone="Asia/Seoul">현재 시간</a>
+    </center>
+  </body>
+</html>
